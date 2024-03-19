@@ -2,7 +2,7 @@
 
 <div align="center">
   <a href="https://github.com/bramanda48/node-supervisord">
-    <img src="https://svgshare.com/i/14V6.svg" alt="Typescript" width="150px">
+    <img src="https://i.ibb.co/z5VT3Br/supervisord.png" alt="Supervisord" width="150px">
   </a>
   <h2 align="center">node-supervisord</h2>
   <div align="center">
