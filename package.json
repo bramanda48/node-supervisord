@@ -1,19 +1,21 @@
 {
-  "name": "@malang-dev/template-typescript",
+  "name": "node-supervisord",
   "version": "1.0.0",
   "description": "Template repository for new TypeScript projects",
-  "repository": "git@github.com:malang-dev/template-typescript.git",
+  "repository": "git@github.com:bramanda48/node-supervisord.git",
   "author": {
-    "name": "Malang.dev",
-    "email": "hello@malang.dev",
+    "name": "bramanda48",
+    "email": "bram@malang.dev",
     "url": "https://malang.dev/"
   },
   "license": "MIT",
-  "private": true,
+  "private": false,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "prepare": "husky install",
     "prebuild": "rimraf dist",
-    "format": "prettier --write \"src/**/*.ts\"",
+    "format": "prettier --write .",
     "build": "tsc -b tsconfig.build.json",
     "lint": "eslint \"src/**/*.ts\" --fix",
     "lint-staged": "lint-staged",
@@ -23,6 +25,7 @@
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
+    "@types/xmlrpc": "^1.3.10",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
     "cross-env": "^7.0.3",
@@ -44,8 +47,12 @@
   },
   "lint-staged": {
     "src/**/*.{ts|test.ts}": [
-      "prettier --write --ignore-unknown",
-      "eslint --max-warnings 0 \"src/**/*.ts\""
+      "eslint --max-warnings 0 \"src/**/*.ts\"",
+      "prettier --write --ignore-unknown"
     ]
+  },
+  "dependencies": {
+    "url": "^0.11.3",
+    "xmlrpc": "^1.3.2"
   }
 }

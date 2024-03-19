@@ -4,7 +4,7 @@
   "files.insertFinalNewline": true,
   "eslint.validate": ["javascript", "typescript"],
   "[json][jsonc]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[javascript][typescript]": {
     "editor.tabSize": 2,
