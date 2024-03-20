@@ -1,6 +1,6 @@
 import { ConfigInfo, MulticallArgs, ProcessInfo, ProcessStatusInfo, State } from "./interfaces";
 
-export const SupervisorMethod = [
+export const $SupervisorMethod = [
   "supervisor.addProcessGroup",
   "supervisor.clearAllProcessLogs",
   "supervisor.clearLog",

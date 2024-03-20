@@ -1,7 +1,16 @@
 {
   "name": "node-supervisord",
-  "version": "1.0.0",
-  "description": "Template repository for new TypeScript projects",
+  "version": "1.0.1",
+  "description": "A Node.js library for communicating with the Supervisord XML-RPC API",
+  "keywords": [
+    "supervisor",
+    "supervisord",
+    "sdk",
+    "typescript",
+    "module",
+    "addon"
+  ],
+  "homepage": "https://github.com/bramanda48/node-supervisord",
   "repository": "git@github.com:bramanda48/node-supervisord.git",
   "author": {
     "name": "bramanda48",
@@ -54,5 +63,8 @@
   "dependencies": {
     "url": "^0.11.3",
     "xmlrpc": "^1.3.2"
+  },
+  "engines": {
+    "node": ">= 18"
   }
 }

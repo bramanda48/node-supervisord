@@ -59,6 +59,12 @@ If you have a suggestion that would make this better, please fork the repo and c
 
 This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/bramanda48/node-supervisord/blob/master/LICENSE.md) file for details.
 
+## Releasing
+
+1. Run `yarn version --[major|minor|patch]` to bump version
+2. Run `git push && git push --tags` to push new tag
+3. GitHub Actions will take care of the rest
+
 ## Acknowledgments
 
 Inspiration, code snippets, icon, etc.
