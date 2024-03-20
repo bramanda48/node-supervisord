@@ -1,6 +1,6 @@
 {
   "name": "node-supervisord",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A Node.js library for communicating with the Supervisord XML-RPC API",
   "keywords": [
     "supervisor",
