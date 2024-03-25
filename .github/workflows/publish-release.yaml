@@ -68,7 +68,7 @@ jobs:
         run: yarn version --no-git-tag-version --new-version ${{ env.INPUT_VENDOR_VERSION }}
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install
 
       - name: Build apps
         run: yarn run build
