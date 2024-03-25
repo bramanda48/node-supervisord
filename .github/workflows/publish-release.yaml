@@ -8,6 +8,8 @@ jobs:
   create_release:
     name: Create release
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.versioning.outputs.version }}
     steps:
       - uses: actions/checkout@v4
         with:
