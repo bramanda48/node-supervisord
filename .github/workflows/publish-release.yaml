@@ -5,11 +5,15 @@ on:
     tags: v*
 
 jobs:
-  create_relase:
+  create_release:
     name: Create release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Fetches entire history, so we can analyze commits to determine next version and release
+          fetch-depth: 0
+
       - name: Determine release version
         id: versioning
         uses: Fresa/trunk-based-release-versioning@v0
@@ -47,6 +51,7 @@ jobs:
   push:
     name: Publish to NPM
     runs-on: ubuntu-latest
+    needs: create_release
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
