@@ -2,6 +2,7 @@
   "editor.formatOnSave": true,
   "editor.guides.bracketPairs": "active",
   "files.insertFinalNewline": true,
+  "files.eol": "\n",
   "eslint.validate": ["javascript", "typescript"],
   "[json][jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -13,5 +14,6 @@
       "source.fixAll.eslint": "explicit",
       "source.fixAll.eslint.format": "explicit"
     }
-  }
+  },
+  "conventionalCommits.scopes": ["code-format"]
 }
