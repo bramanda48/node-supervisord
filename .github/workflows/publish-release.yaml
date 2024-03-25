@@ -24,10 +24,7 @@ jobs:
         id: convert-commit-logs
         uses: mikefarah/yq@master
         with:
-          cmd: |
-            yq ea -o=json 'select(. != null) \
-            | [.]' "$(echo "${{ steps.versioning.outputs.commit-logs-path }}" | sed "s|^${{ github.workspace }}/||")" \
-            | tee commit_logs.json
+          cmd: yq ea -o=json 'select(. != null) | [.]' "$(echo "${{ steps.versioning.outputs.commit-logs-path }}" | sed "s|^${{ github.workspace }}/||")" | tee commit_logs.json
 
       - name: Generate release notes
         id: release_notes
