@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    // build es2022 modules by default
+    "target": "ES2022",
+    "module": "CommonJS",
+    "lib": ["ES2022"],
+    "types": ["node", "jest"],
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "esModuleInterop": true,
+    "removeComments": true,
+    // enable JS only as needed on per-project basis
+    "allowJs": false,
+    // required to support esbuild, babel, and similar transpilers
+    "isolatedModules": true,
+    // allow import .json file
+    "resolveJsonModule": true,
+    // produce consistent output across all platforms
+    "newLine": "lf",
+    // produce .js.map, .d.ts and .d.ts.map files when emit is enabled
+    "noEmit": false,
+    "declaration": true,
+    "declarationMap": false,
+    "sourceMap": true,
+    // recommended for faster compilation
+    "skipLibCheck": true,
+    // be as strict as possible, but no stricter
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "strictNullChecks": false,
+    "strictFunctionTypes": false,
+    "noImplicitAny": false
+  }
+}

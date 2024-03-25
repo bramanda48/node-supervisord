@@ -1,0 +1,21 @@
+# source code
+src/
+
+# dependencies
+node_modules/
+renovate.json
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Others
+.husky
+.vscode
+.prettierignore
+.prettierrc
+.eslintrc.*
+jest.*
+tsconfig.*
