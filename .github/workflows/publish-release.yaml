@@ -5,8 +5,47 @@ on:
     tags: v*
 
 jobs:
+  create_relase:
+    name: Create release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Determine release version
+        id: versioning
+        uses: Fresa/trunk-based-release-versioning@v0
+
+      - name: Convert commit logs to JSON
+        id: convert-commit-logs
+        uses: mikefarah/yq@master
+        with:
+          cmd: |
+            yq ea -o=json 'select(. != null) \
+            | [.]' "$(echo "${{ steps.versioning.outputs.commit-logs-path }}" | sed "s|^${{ github.workspace }}/||")" \
+            | tee commit_logs.json
+
+      - name: Generate release notes
+        id: release_notes
+        uses: Fresa/release-notes-generator@v2
+        with:
+          version: ${{ steps.versioning.outputs.version }}
+          last_release_ref: ${{ steps.versioning.outputs.last-release-ref }}
+          release_ref: ${{ steps.versioning.outputs.release-ref }}
+          path_to_commits: ./commit_logs.json
+
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.versioning.outputs.version }}
+          release_name: ${{ steps.versioning.outputs.version }}
+          body: ${{ steps.release_notes.outputs.release_notes }}
+          draft: false
+          prerelease: ${{ steps.versioning.outputs.is-prerelease }}
+
   push:
-    name: push
+    name: Publish to NPM
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
