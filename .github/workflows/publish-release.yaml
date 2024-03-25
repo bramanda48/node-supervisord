@@ -2,7 +2,7 @@ name: Publish to NPM
 
 on:
   push:
-    tags: v*
+    branches: master
 
 jobs:
   create_release:
