@@ -17,15 +17,19 @@
 ## Installation & Usage
 
 Install node-supervisord using npm:
+
 ```bash
 npm install --save node-supervisord
 ```
+
 Install node-supervisord using yarn:
+
 ```bash
 yarn add node-supervisord
 ```
 
 Example usage :
+
 ```ts
 import { SupervisordClient } from "node-supervisord";
 
@@ -41,8 +45,8 @@ const client = new SupervisordClient("http://localhost:9001", {
 // Example get api version
 const version = await client.getAPIVersion();
 console.log(version);
-
 ```
+
 To see the available methods, you can visit [http://supervisord.org/api.html](http://supervisord.org/api.html)
 
 ## Contributing
@@ -58,7 +62,7 @@ If you have a suggestion that would make this better, please fork the repo and c
 ## Releasing
 
 1. Go to [Publish Release](https://github.com/bramanda48/node-supervisord/actions/workflows/publish-release.yaml) page, click Run workflow
-3. Fill the vendor version and then run the flow
+2. Fill the vendor version and then run the flow
 3. GitHub Actions will take care of the rest
 
 ## License
