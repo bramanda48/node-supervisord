@@ -36,7 +36,7 @@ jobs:
 
       - name: Generate release notes
         id: release_notes
-        uses: Fresa/release-notes-generator@v2
+        uses: Fresa/release-notes-generator@v3
         with:
           version: ${{ env.INPUT_VENDOR_VERSION }}
           last_release_ref: ${{ steps.versioning.outputs.last-release-ref }}
