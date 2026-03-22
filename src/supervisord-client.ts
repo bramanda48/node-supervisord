@@ -2,6 +2,9 @@ import { UrlWithStringQuery, parse } from "url";
 import { Client, createClient } from "xmlrpc";
 import { $SupervisorMethod, SupervisordClientMethod } from "./methods";
 
+type ClientOptions = Parameters<typeof createClient>[0];
+type ExtendedClientOptions = ClientOptions & { socketPath?: string };
+
 export interface SupervisordClientOptions {
   username: string;
   password: string;
@@ -10,36 +13,41 @@ export interface SupervisordClientOptions {
 export class SupervisordClient extends SupervisordClientMethod {
   private client: Client;
 
-  constructor(host: string, options?: SupervisordClientOptions) {
+  constructor(host: string, options?: SupervisordClientOptions);
+  constructor(host: UrlWithStringQuery, options?: SupervisordClientOptions);
+  constructor(host: string | UrlWithStringQuery, options?: SupervisordClientOptions) {
     super();
 
-    let hostParts: UrlWithStringQuery;
-    let basicAuth: { user: string; pass: string };
+    const clientOptions: ExtendedClientOptions = {
+      path: "/RPC2",
+    };
 
-    if (typeof host == "string") {
-      if (host.indexOf("http") !== 0) {
+    let hostParts: UrlWithStringQuery;
+
+    if (typeof host === "string") {
+      if (!host.startsWith("http://") && !host.startsWith("unix://")) {
         host = "http://" + host;
       }
       hostParts = parse(host, false);
-      if (options) {
-        basicAuth = {
-          user: options.username,
-          pass: options.password,
-        };
-      }
     } else if (host) {
       hostParts = host;
     }
 
-    if (!hostParts.hostname) hostParts.hostname = "localhost";
-    if (!hostParts.port) hostParts.port = "9001";
+    if (options) {
+      clientOptions.basic_auth = {
+        user: options.username,
+        pass: options.password,
+      };
+    }
 
-    this.client = createClient({
-      host: hostParts.hostname,
-      port: parseInt(hostParts.port),
-      path: "/RPC2",
-      basic_auth: basicAuth,
-    });
+    if (hostParts.protocol === "unix:") {
+      clientOptions.socketPath = hostParts.pathname;
+    } else {
+      clientOptions.host = hostParts.hostname || "localhost";
+      clientOptions.port = parseInt(hostParts.port || "9001");
+    }
+
+    this.client = createClient(clientOptions as ExtendedClientOptions);
   }
 
   _call(method: string, params: any[], callback: (err: any, result: object) => void) {

@@ -47,6 +47,25 @@ const version = await client.getAPIVersion();
 console.log(version);
 ```
 
+### Unix Socket Connection
+
+If your supervisord is configured to use a Unix socket instead of TCP, you can use the `unix://` URL format (consistent with supervisorctl's `serverurl` configuration):
+
+```ts
+import { SupervisordClient } from "node-supervisord";
+
+// Connect via Unix socket
+const client = new SupervisordClient("unix:///tmp/supervisor.sock");
+
+// With authentication
+const client = new SupervisordClient("unix:///tmp/supervisor.sock", {
+  username: "your-username",
+  password: "your-password",
+});
+```
+
+**Note:** Unix socket support is available on Linux and macOS only. Windows users should use TCP connections.
+
 To see the available methods, you can visit [http://supervisord.org/api.html](http://supervisord.org/api.html)
 
 ## Contributing
